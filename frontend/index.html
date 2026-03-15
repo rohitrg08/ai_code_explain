@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Code Explanation Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div>
+                <p class="eyebrow">AIML Mini Project</p>
+                <h1>AI Code Explanation Tool for Multiple Programming Languages</h1>
+                <p class="hero-copy">
+                    Explain, analyze, translate, and narrate code using a pretrained HuggingFace Transformer with a stateless FastAPI backend.
+                </p>
+            </div>
+            <div class="hero-card">
+                <span>Supported</span>
+                <strong>Python, C, C++, Java, JavaScript, SQL</strong>
+                <span>Real-time inference. Modular backend.</span>
+            </div>
+        </header>
+
+        <main class="workspace-grid">
+            <section class="panel editor-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Code Editor</h2>
+                        <p>Paste a program and run AI-powered analysis.</p>
+                    </div>
+                    <div class="status-pill" id="statusPill">Backend ready check pending</div>
+                </div>
+
+                <div class="controls-grid">
+                    <label>
+                        Source Language
+                        <select id="languageSelect">
+                            <option value="python">Python</option>
+                            <option value="c">C</option>
+                            <option value="c++">C++</option>
+                            <option value="java">Java</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="sql">SQL</option>
+                            <option value="auto">Auto Detect</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Target Language
+                        <select id="targetLanguageSelect">
+                            <option value="java">Java</option>
+                            <option value="python">Python</option>
+                            <option value="c++">C++</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="sql">SQL</option>
+                        </select>
+                    </label>
+                </div>
+
+                <textarea id="codeInput">for i in range(5):
+    print(i)</textarea>
+
+                <div class="button-row">
+                    <button id="analyzeBtn" class="primary">Analyze Code</button>
+                    <button id="translateBtn">Analyze + Translate</button>
+                    <button id="voiceBtn">Generate Voice</button>
+                </div>
+
+                <div class="api-note">
+                    Backend URL: <code>http://127.0.0.1:8000</code>
+                </div>
+            </section>
+
+            <section class="panel results-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Analysis Results</h2>
+                        <p>Transformer output plus rule-based software analysis.</p>
+                    </div>
+                </div>
+
+                <div class="results-grid">
+                    <article class="result-card">
+                        <h3>Code Summary</h3>
+                        <p id="summaryOutput">Run analysis to generate a summary.</p>
+                    </article>
+
+                    <article class="result-card">
+                        <h3>Complexity</h3>
+                        <div id="complexityOutput"></div>
+                    </article>
+
+                    <article class="result-card full-width">
+                        <h3>Line-by-Line Explanation</h3>
+                        <div id="lineExplanationOutput" class="stacked-output"></div>
+                    </article>
+
+                    <article class="result-card">
+                        <h3>Bug Detection</h3>
+                        <div id="bugOutput" class="stacked-output"></div>
+                    </article>
+
+                    <article class="result-card">
+                        <h3>Optimization Suggestions</h3>
+                        <div id="optimizationOutput" class="stacked-output"></div>
+                    </article>
+
+                    <article class="result-card full-width">
+                        <h3>Flowchart</h3>
+                        <div id="flowchartOutput" class="mermaid-box">Run analysis to generate a Mermaid flowchart.</div>
+                    </article>
+
+                    <article class="result-card full-width">
+                        <h3>Translated Code</h3>
+                        <pre id="translationOutput" class="code-block">Run Analyze + Translate to see converted code.</pre>
+                    </article>
+
+                    <article class="result-card full-width">
+                        <h3>Voice Explanation</h3>
+                        <audio id="audioPlayer" controls></audio>
+                        <p id="voiceMeta">Generate voice narration after analysis.</p>
+                    </article>
+
+                    <article class="result-card full-width">
+                        <h3>Model Status</h3>
+                        <pre id="modelOutput" class="code-block">Waiting for backend health check.</pre>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

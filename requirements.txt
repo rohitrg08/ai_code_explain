@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+transformers
+torch
+sentencepiece
+safetensors
+pydantic
+gTTS
+pyttsx3
