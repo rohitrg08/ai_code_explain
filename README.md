@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AI Code Explanation Tool for Multiple Programming Languages
 
 This project is a stateless AIML major project that explains source code in real time using a pretrained HuggingFace Transformer model and a modular FastAPI backend. It supports Python, C, C++, Java, JavaScript, and SQL without using any database.
@@ -197,7 +196,50 @@ for i in range(5):
 - Why heuristic analyzers are combined with the Transformer layer
 - Real-time inference tradeoffs on CPU vs GPU
 
-=======
-# ai_code_explain
-the platform which explain codes line by  line 
->>>>>>> fab00c7edbe7e5007954dd4921bca8fb944ce922
+
+## Render Deployment
+
+Deploy this project as a Render `Web Service` so the FastAPI backend and frontend are served from the same URL.
+
+### Render Service Settings
+
+- Service type: `Web Service`
+- Runtime: `Python 3`
+- Branch: `main`
+- Root Directory: leave blank
+- Build Command: `pip install -r requirements.txt`
+- Start Command: `uvicorn backend.app:app --host 0.0.0.0 --port $PORT`
+- Health Check Path: `/api/health`
+
+### Python Version
+
+This repo includes `.python-version` with `3.11` so Render uses the Python 3.11 line for this service.
+
+### Recommended Environment Variables
+
+Set these in the Render dashboard under Environment:
+
+- `PYTHON_VERSION=3.11.11` if you want a fully pinned Python version instead of `.python-version`
+- `CODE_MODEL_NAME=Salesforce/codet5p-770m`
+- `CODE_EXPLANATION_MODEL_NAME=Salesforce/codet5p-770m`
+- `CODE_SUMMARY_MODEL_NAME=Salesforce/codet5p-770m`
+- `CODE_TRANSLATION_MODEL_NAME=Salesforce/codet5p-770m`
+
+### Important Notes for This Project
+
+- Render web services must bind to `0.0.0.0` and should use the `PORT` environment variable.
+- Free web services spin down after 15 minutes of inactivity, so the first request after idle can be slow.
+- Free web services do not support persistent disks.
+- Render services use an ephemeral filesystem by default, so downloaded HuggingFace model files can be lost on redeploy or restart.
+- If you upgrade to a paid instance, you can attach a persistent disk and mount it at `/opt/render/project/src/models` to preserve cached model downloads.
+
+### Deploy Steps
+
+1. In Render, click `New` -> `Web Service`.
+2. Connect the GitHub repo `rohitrg08/ai_code_explain`.
+3. Enter the build and start commands listed above.
+4. Add the environment variables.
+5. Click `Create Web Service`.
+6. After deploy completes, open your `onrender.com` URL.
+7. API docs remain available at `/docs`.
+
