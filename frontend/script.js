@@ -1,9 +1,14 @@
-const FALLBACK_API_BASE = "http://127.0.0.1:8000";
-const inferredOrigin = window.location.origin && window.location.origin.startsWith("http")
+const FALLBACK_API_BASE = "https://ai-code-explain.onrender.com";
+
+const inferredOrigin =
+  window.location.origin && window.location.origin.startsWith("http")
     ? window.location.origin
     : FALLBACK_API_BASE;
-const API_BASE = inferredOrigin.includes(":8000") ? inferredOrigin : FALLBACK_API_BASE;
 
+const API_BASE = inferredOrigin.includes(":8000")
+  ? inferredOrigin
+  : FALLBACK_API_BASE;
+  
 const languageModeMap = {
     python: "python",
     c: "text/x-csrc",
