@@ -1,8 +1,11 @@
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 try:
@@ -22,9 +25,11 @@ except ImportError:
     from translator import CodeTranslator
     from voice_explainer import VoiceExplainer
 
-from fastapi import FastAPI
 
-app = FastAPI()
+FRONTEND_DIR = Path(__file__).resolve().parents[1] / "frontend"
+INDEX_FILE = FRONTEND_DIR / "index.html"
+
+
 class AnalyzeRequest(BaseModel):
     code: str = Field(..., min_length=1)
     language: Optional[str] = "python"
@@ -69,14 +74,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 
-@app.get("/")
+
+@app.get("/", include_in_schema=False)
 def root():
-    return {
-        "message": "AI Code Explanation Tool backend is running.",
-        "docs": "/docs",
-        "health": "/api/health",
-    }
+    return FileResponse(INDEX_FILE)
 
 
 @app.get("/api/health")

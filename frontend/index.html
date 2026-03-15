@@ -8,13 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
     <div class="page-shell">
         <header class="hero">
             <div>
-                <p class="eyebrow">AIML Mini Project</p>
+                <p class="eyebrow">AIML Major Project</p>
                 <h1>AI Code Explanation Tool for Multiple Programming Languages</h1>
                 <p class="hero-copy">
                     Explain, analyze, translate, and narrate code using a pretrained HuggingFace Transformer with a stateless FastAPI backend.
@@ -23,7 +23,7 @@
             <div class="hero-card">
                 <span>Supported</span>
                 <strong>Python, C, C++, Java, JavaScript, SQL</strong>
-                <span>Real-time inference. Modular backend.</span>
+                <span>One URL deployment. Same-origin API. Modular backend.</span>
             </div>
         </header>
 
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="api-note">
-                    Backend URL: <code>https://ai-code-explain.onrender.com</code>
+                    Frontend and backend are served together from the same Render URL.
                 </div>
             </section>
 
@@ -142,6 +142,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>
