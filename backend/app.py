@@ -22,7 +22,7 @@ except ImportError:
     from translator import CodeTranslator
     from voice_explainer import VoiceExplainer
 
-
+app = FastAPI()
 class AnalyzeRequest(BaseModel):
     code: str = Field(..., min_length=1)
     language: Optional[str] = "python"
