@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI Code Explanation Tool for Multiple Programming Languages
 
 This project is a stateless AIML major project that explains source code in real time using a pretrained HuggingFace Transformer model and a modular FastAPI backend. It supports Python, C, C++, Java, JavaScript, and SQL without using any database.
@@ -196,3 +197,7 @@ for i in range(5):
 - Why heuristic analyzers are combined with the Transformer layer
 - Real-time inference tradeoffs on CPU vs GPU
 
+=======
+# ai_code_explain
+the platform which explain codes line by  line 
+>>>>>>> fab00c7edbe7e5007954dd4921bca8fb944ce922
